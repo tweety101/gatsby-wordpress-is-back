@@ -23,9 +23,6 @@ class CategoryTemplate extends React.Component {
 
 
 
-
-
-
 export default CategoryTemplate
 
 

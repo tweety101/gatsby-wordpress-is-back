@@ -5,15 +5,7 @@ import styled from 'styled-components'
 import ListCard from '../components/list-card.js'
 
 
-const FeaturedSection = styled.div`
-    display: flex;
-    max-width: 50rem;
-    max-height: 20rem;
 
-`
-const CategorySection = styled.ul`
-    
-`
 const firstCategoryToList = "politics";
 const secondCategoryToList = "category-1";
 
@@ -21,7 +13,7 @@ class IndexPage extends React.Component {
   render() {
     const posts = [...this.props.data.allWordpressPost.edges];
     console.log(posts);
-    const firstposts = posts.splice(0, 3);
+    const firstposts = posts.splice(0, 2);
     const firstPostList = posts.filter(post => {
       return (post.node.categories[0].slug === firstCategoryToList)
     });
@@ -29,10 +21,12 @@ class IndexPage extends React.Component {
     const secondPostList = posts.filter(post => {
       return (post.node.categories[0].slug === secondCategoryToList)
     });
+    let posttolist1 = firstPostList.splice(0,4);
+    let posttolist2 = secondPostList.splice(0,4);
     console.log(secondPostList);
     return (
-      <div>
-        <FeaturedSection>
+      <main>
+        <div id="left">
           {firstposts.map(post => (
             <Card
               key={post.node.id}
@@ -41,28 +35,28 @@ class IndexPage extends React.Component {
               title={post.node.title}
               date={post.node.date}
             />
-          ))}</FeaturedSection>
-        <CategorySection>
-          <h2>{firstCategoryToList}</h2>
-          {firstPostList.map(post => (
+          ))}</div>
+        <div id="center">
+          <h2>Latest in {firstCategoryToList}</h2>
+          {posttolist1.map(post => (
             <ListCard
               key={post.node.slug}
               slug={post.node.slug}
               title={post.node.title}
             />
           ))}
-        </CategorySection>
-        <CategorySection>
-          <h2>{secondCategoryToList}</h2>
-          {secondPostList.map(post => (
+          <h2>Latest in {secondCategoryToList}</h2>
+          {posttolist2.map(post => (
             <ListCard
               key={post.node.slug}
               slug={post.node.slug}
               title={post.node.title}
             />
           ))}
-        </CategorySection>
-      </div>
+        </div>
+        <div id="right">Hi, I am the right content</div>
+        <footer>Hi, I am a footer!</footer>
+      </main>
 
     );
   }

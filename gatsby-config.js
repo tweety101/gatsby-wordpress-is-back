@@ -6,7 +6,8 @@ module.exports = {
     title: 'Hindu Media Bureau',
     placeholderImage: "yacht-3480913_1920.jpg",
   },
-  plugins: ['gatsby-plugin-react-helmet',
+  plugins: [
+      `gatsby-plugin-react-helmet`,
       `gatsby-plugin-styled-components`,
       {
         resolve: `gatsby-plugin-typography`,
