@@ -1,7 +1,6 @@
 
 
 module.exports = {
-
   siteMetadata: {
     title: 'Hindu Media Bureau',
     placeholderImage: "yacht-3480913_1920.jpg",
@@ -16,7 +15,7 @@ module.exports = {
         },
       },
     {
-      resolve: "gatsby-source-wordpress",
+      resolve: `gatsby-source-wordpress`,
       options: {
         /*
          * The base URL of the Wordpress site without the trailingslash and the protocol. This is required.
@@ -33,17 +32,17 @@ module.exports = {
         // If useACF is true, then the source plugin will try to import the Wordpress ACF Plugin contents.
         // This feature is untested for sites hosted on Wordpress.com.
         // Defaults to true.
-        auth: {
+       // auth: {
           // If auth.user and auth.pass are filled, then the source plugin will be allowed
           // to access endpoints that are protected with .htaccess.
-          htaccess_user: "adriaan",
-          htaccess_pass: "blub1234",
-          htaccess_sendImmediately: false,
+       //   htaccess_user: "adriaan",
+       //   htaccess_pass: "blub1234",
+       //   htaccess_sendImmediately: false,
 
           // If hostingWPCOM is true then you will need to communicate with wordpress.com API
           // in order to do that you need to create an app (of type Web) at https://developer.wordpress.com/apps/
           // then add your clientId, clientSecret, username, and password here
-        },
+     //   },
         // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
         // It can help you debug specific API Endpoints problems.
         verboseOutput: false,
@@ -51,9 +50,11 @@ module.exports = {
         perPage: 100,
         // Search and Replace Urls across WordPress content.
         //searchAndReplaceContentUrls: {
-        //  sourceUrl: "https://source-url.com",
-        //  replacementUrl: "https://replacement-url.com",
-      },
+         // sourceUrl: "https://res.cloudinary.com/dkeudosjel/image/upload/v1530908272/",
+         // replacementUrl: "https://res.cloudinary.com/dkeudosjel/image/upload/c_scale,w_700/v1530908272/",
+         // sourceUrl: "exercitation ullamco laboris nisi ut aliquip",
+         // replacementUrl: "let's see if this worked",
+       // },
       // Set how many simultaneous requests are sent at once.
       concurrentRequests: 10,
       // Exclude specific routes using glob parameters
@@ -65,5 +66,6 @@ module.exports = {
       //normalizer: function({ entities }) {
       //  return entities
     },
+  },
 ],
 }

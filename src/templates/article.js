@@ -13,15 +13,18 @@ const Article = styled.article`
 `
 
 const Body = styled.p`
+      width: 100%;
       max-width: 700px;
       margin: auto;
+      overflow: hidden;
+      padding: 20px;
 `
 
 const ArticleTemplate = ({ data }) => (
     <Article>
         <Image 
         cloudName="dkeudosjel" 
-        publicId={(data.wordpressPost.featured_media) === null ? data.site.siteMetadata.placeholderImage : data.wordpressPost.featured_media.source_url}
+        publicId={(data.wordpressPost.featured_media) === null ? data.site.siteMetadata.placeholderImage : data.wordpressPost.featured_media.source_url.replace("http://cms.hindumediabureau.com/wp-content/uploads","hmb-media")}
         width="auto" 
         crop="fill"
         responsive />
