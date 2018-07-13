@@ -47,7 +47,7 @@ const Styledfooter = styled.footer`
 `
 
 const firstCategoryToList = "politics";
-const secondCategoryToList = "category-1";
+const secondCategoryToList = "events";
 
 class IndexPage extends React.Component {
   render() {

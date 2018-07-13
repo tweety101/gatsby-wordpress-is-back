@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import { Image } from 'cloudinary-react';
 import { Transformation } from 'cloudinary-react';
 
-const ArticleImage = styled.img`
 
-`
 
 const Article = styled.article`
-    
+   max-width: 1000px;
+   margin: auto; 
 `
 
 const Body = styled.p`
@@ -18,6 +17,19 @@ const Body = styled.p`
       margin: auto;
       overflow: hidden;
       padding: 20px;
+      img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height:auto;
+        margin-bottom:2em;
+      }
+      iframe {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom:2em;
+      }
 `
 
 const ArticleTemplate = ({ data }) => (

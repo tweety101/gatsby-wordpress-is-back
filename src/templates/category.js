@@ -12,11 +12,9 @@ const Categorywrapper = styled.main`
 
 class CategoryTemplate extends React.Component {
     render() {
-        const categoryPosts = this.props.data.allWordpressPost.edges;
-        console.log(categoryPosts);
         return (
             <Categorywrapper>
-                {categoryPosts.map(post => (
+                {(this.props.data.allWordpressPost) === null ? "No posts to display in the category" : this.props.data.allWordpressPost.edges.map(post => (
                 <Card 
                 key={post.node.slug}
                 slug={post.node.slug}

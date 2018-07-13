@@ -28,7 +28,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             }
             }
             allWordpressCategory (
-                filter: {count: {ne: 0}}
+                filter: {slug: {ne: "uncategorized"}}
             ) {
                 edges {
                   node {

@@ -24,12 +24,15 @@ const Myheader = styled.header`
 const Mynav = styled.nav`
       max-width: 1200px;
       margin: auto;
+      padding: 0px 10px 0px 10px;
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
       overflow: scroll;
       a {
+        width: 100%;
         text-decoration: none;
+        padding: 0px 5px 0px 5px;
       }
 `
 const Copyright = styled.div`
@@ -61,7 +64,7 @@ const Layout = ({ children, data }) => (
           <Image cloudName="dkeudosjel"
               publicId="Hindu_Media_Bureau_logo_2.jpg"
               secure
-            >s
+            >
             <Transformation
                 width="200"
                 dpr="auto"
