@@ -3,6 +3,8 @@ import Link from 'gatsby-link'
 import styled from 'styled-components';
 import { Image } from 'cloudinary-react';
 import { Transformation } from 'cloudinary-react';
+import Disqus from 'disqus-react';
+import LazyLoad from 'react-lazy-load';
 
 
 
@@ -11,7 +13,7 @@ const Article = styled.article`
    margin: auto; 
 `
 
-const Body = styled.p`
+const Body = styled.div`
       width: 100%;
       max-width: 700px;
       margin: auto;
@@ -31,21 +33,40 @@ const Body = styled.p`
         margin-bottom:2em;
       }
 `
+const Comments = styled.div`
 
-const ArticleTemplate = ({ data }) => (
-    <Article>
-        <Image 
-        cloudName="dkeudosjel" 
-        publicId={(data.wordpressPost.featured_media) === null ? data.site.siteMetadata.placeholderImage : data.wordpressPost.featured_media.source_url.replace("http://cms.hindumediabureau.com/wp-content/uploads","hmb-media")}
-        width="auto" 
-        crop="fill"
-        responsive />
+`
+class ArticleTemplate extends React.Component {
+  render() {
+    const thisarticle = this.props.data.wordpressPost;
+    const siteinfo = this.props.data.siteMetadata;
+    const disqusShortname = "hindumediabureau";
+    const disqusConfig = {
+      url: this.props.slug,
+      identifier: "",
+      title: thisarticle.title,
+  };
+
+    return (
+      <Article>
+        <Image
+          cloudName="dkeudosjel"
+          publicId={(thisarticle.featured_media) === null ? siteinfo.placeholderImage : thisarticle.featured_media.source_url.replace("http://cms.hindumediabureau.com/wp-content/uploads", "hmb-media")}
+          width="auto"
+          crop="fill"
+          responsive />
         <Body>
-        <h1>{data.wordpressPost.title}</h1>
-        <p dangerouslySetInnerHTML={{__html: data.wordpressPost.content}} />
+          <h1>{thisarticle.title}</h1>
+          <p dangerouslySetInnerHTML={{ __html: thisarticle.content }} />
+        <LazyLoad height={300} offsetVertical={200}>
+        <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+        </LazyLoad>
         </Body>
-    </Article>
-)
+      </Article>
+    )
+  }
+}
+
 
 export default ArticleTemplate
 

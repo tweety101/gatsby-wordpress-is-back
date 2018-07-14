@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.5.1",
     "cloudinary-react": "^1.0.6",
+    "disqus-react": "^1.0.5",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
@@ -13,6 +14,7 @@
     "gatsby-plugin-typography": "^1.7.19",
     "gatsby-source-wordpress": "^2.0.93",
     "react-helmet": "^5.2.0",
+    "react-lazy-load": "^3.0.13",
     "styled-components": "^3.3.3",
     "typography-theme-funston": "^0.15.10"
   },
