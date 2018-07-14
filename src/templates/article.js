@@ -50,7 +50,13 @@ class ArticleTemplate extends React.Component {
       title: thisarticle.title,
   };
     const absUrl = siteinfo.domainurl + this.props.location.pathname;
-
+    const sharedImage = (thisarticle.featured_media) === null ? 
+    siteinfo.placeholderImage 
+    : thisarticle.featured_media.source_url.replace(
+      "http://cms.hindumediabureau.com/wp-content/uploads", 
+      "https://res.cloudinary.com/dkeudosjel/image/upload/c_fill,w_1200,h_600/v1/hmb-media/")
+    
+    
     return (
       <Article>
         <Helmet
@@ -59,9 +65,9 @@ class ArticleTemplate extends React.Component {
           { property: 'og:type', content: "article" },
           { property: 'og:url', content: absUrl },
           { property: 'og:title', content: thisarticle.title },
-          { property: 'og:image', content: thisarticle.featured_media.source_url },
+          { property: 'og:image', content: sharedImage },
           { property: 'twitter:title', content: thisarticle.title },
-          { property: 'twitter:image:src', content: thisarticle.featured_media.source_url },
+          { property: 'twitter:image:src', content: sharedImage },
           
         ]}
       />
@@ -70,7 +76,8 @@ class ArticleTemplate extends React.Component {
           publicId={(thisarticle.featured_media) === null ? siteinfo.placeholderImage : thisarticle.featured_media.source_url.replace("http://cms.hindumediabureau.com/wp-content/uploads", "hmb-media")}
           width="auto"
           crop="fill"
-          responsive />
+          responsive
+          secure />
         <Body>
           <h1>{thisarticle.title}</h1>
           <div>{ ReactHtmlParser(thisarticle.content) }</div>
