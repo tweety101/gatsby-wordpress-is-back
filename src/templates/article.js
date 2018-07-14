@@ -5,7 +5,8 @@ import { Image } from 'cloudinary-react';
 import { Transformation } from 'cloudinary-react';
 import Disqus from 'disqus-react';
 import LazyLoad from 'react-lazy-load';
-
+import Helmet from 'react-helmet';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
 const Article = styled.article`
@@ -36,19 +37,34 @@ const Body = styled.div`
 const Comments = styled.div`
 
 `
+
+
 class ArticleTemplate extends React.Component {
   render() {
     const thisarticle = this.props.data.wordpressPost;
-    const siteinfo = this.props.data.siteMetadata;
+    const siteinfo = this.props.data.site.siteMetadata;
     const disqusShortname = "hindumediabureau";
     const disqusConfig = {
-      url: this.props.slug,
+      url: this.props.location,
       identifier: "",
       title: thisarticle.title,
   };
+    const absUrl = siteinfo.domainurl + this.props.location.pathname;
 
     return (
       <Article>
+        <Helmet
+        title={thisarticle.title + " | " + "HMB"}
+        meta={[
+          { property: 'og:type', content: "article" },
+          { property: 'og:url', content: absUrl },
+          { property: 'og:title', content: thisarticle.title },
+          { property: 'og:image', content: thisarticle.featured_media.source_url },
+          { property: 'twitter:title', content: thisarticle.title },
+          { property: 'twitter:image:src', content: thisarticle.featured_media.source_url },
+          
+        ]}
+      />
         <Image
           cloudName="dkeudosjel"
           publicId={(thisarticle.featured_media) === null ? siteinfo.placeholderImage : thisarticle.featured_media.source_url.replace("http://cms.hindumediabureau.com/wp-content/uploads", "hmb-media")}
@@ -57,7 +73,7 @@ class ArticleTemplate extends React.Component {
           responsive />
         <Body>
           <h1>{thisarticle.title}</h1>
-          <p dangerouslySetInnerHTML={{ __html: thisarticle.content }} />
+          <div>{ ReactHtmlParser(thisarticle.content) }</div>
         <LazyLoad height={300} offsetVertical={200}>
         <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
         </LazyLoad>
@@ -79,6 +95,7 @@ export const query = graphql`
         source_url
       }
       date
+      excerpt
       content
       author {
         name
@@ -86,6 +103,8 @@ export const query = graphql`
     }
     site {
         siteMetadata {
+          domainurl
+          title
           placeholderImage
         }
       }

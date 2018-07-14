@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import styled from 'styled-components'
-import Link from 'gatsby-link'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import styled from 'styled-components';
+import Link from 'gatsby-link';
 import { Image } from 'cloudinary-react';
 import { Transformation } from 'cloudinary-react';
 
@@ -53,8 +53,11 @@ const Layout = ({ children, data }) => (
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'og:site_name', content: 'Hindu Media Bureau' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@hindumediaburea' },
+        { name: 'twitter:creator', content: '@hindumediaburea' },
+        
       ]}
     />
     <Container>
@@ -76,6 +79,7 @@ const Layout = ({ children, data }) => (
     <Mynav>
       {data.allWordpressCategory.edges.map(cat =>(
         <Link 
+        key={cat.node.slug}
         to={`/${cat.node.slug}/`}>{cat.node.name}</Link>
       ))}
     </Mynav>

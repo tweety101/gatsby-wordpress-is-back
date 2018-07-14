@@ -2,6 +2,7 @@
 
 module.exports = {
   siteMetadata: {
+    domainurl: 'https://www.hindumediabureau.com',
     title: 'Hindu Media Bureau',
     placeholderImage: "yacht-3480913_1920.jpg",
   },
@@ -61,7 +62,7 @@ module.exports = {
       // See: https://github.com/isaacs/minimatch
       // Example:  `["/*/*/comments", "/yoast/**"]` will exclude routes ending in `comments` and
       // all routes that begin with `yoast` from fetch.
-      excludedRoutes: ["/*/*/comments", "/yoast/**"],
+      //excludedRoutes: ["/*/*/comments", "/yoast/**"],
       // use a custom normalizer which is applied after the built-in ones.
       //normalizer: function({ entities }) {
       //  return entities
