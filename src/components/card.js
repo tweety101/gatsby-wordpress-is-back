@@ -6,6 +6,10 @@ import { Transformation } from 'cloudinary-react';
 
 const Post = styled.li`
   padding: 10px;
+  margin-bottom: 5rem;
+  a{
+    text-decoration: none;
+  }
 `
 
 const Title = styled.h2`

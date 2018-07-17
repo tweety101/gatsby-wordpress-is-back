@@ -1,8 +1,8 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import Card from '../components/card.js'
-import styled from 'styled-components'
-import ListCard from '../components/list-card.js'
+import React from 'react';
+import Link from 'gatsby-link';
+import Card from '../components/card.js';
+import styled from 'styled-components';
+import ListCard from '../components/list-card.js';
 
 
 const Styledmain = styled.main`
@@ -45,22 +45,36 @@ const Styledfooter = styled.footer`
       background-color: rgb(117, 131, 90);
       color: white;
 `
+const CategoryLink = styled(Link)`
+        color: red;
+        display: flex;
+        text-decoration: none;
 
-const firstCategoryToList = "politics";
-const secondCategoryToList = "events";
+`
+
+const Styledcatblock = styled.div`
+        margin: 10px 0px;
+`
+
+const twopostspercat = (postsarray, value) => {
+  let count = 0;
+  let twoposts = [];
+  for (let i = 0; i < postsarray.length && count < 2; i++) {
+    if (postsarray[i].node.categories[0].slug === value) {
+      count++;
+      twoposts = [...twoposts, postsarray[i]]
+    }
+  } 
+  return twoposts;
+}
+
+
 
 class IndexPage extends React.Component {
   render() {
     const posts = [...this.props.data.allWordpressPost.edges];
-    const firstposts = posts.splice(0, 2);
-    const firstPostList = posts.filter(post => {
-      return (post.node.categories[0].slug === firstCategoryToList)
-    });
-    const secondPostList = posts.filter(post => {
-      return (post.node.categories[0].slug === secondCategoryToList)
-    });
-    let posttolist1 = firstPostList.splice(0,4);
-    let posttolist2 = secondPostList.splice(0,4);
+    const firstposts = posts.slice(0, 2);
+    let categories = this.props.data.allWordpressCategory.edges;
     return (
       <Styledmain>
         <Left>
@@ -76,25 +90,19 @@ class IndexPage extends React.Component {
         ))}
         </Left>
         <Center>
-          <h2>Latest in {firstCategoryToList}</h2>
-          {posttolist1.map(post => (
-            <ListCard
+          {categories.map(cat => (
+            <Styledcatblock key={cat.node.slug}>
+             <CategoryLink to={cat.node.slug}> <h2>{cat.node.name} -></h2></CategoryLink>
+            {twopostspercat(posts, cat.node.slug).map(post => (
+              <ListCard
               key={post.node.slug}
               slug={post.node.slug}
               title={post.node.title}
               image={(post.node.featured_media) === null ? this.props.data.site.siteMetadata.placeholderImage : post.node.featured_media.source_url}
               date={post.node.date}
             />
-          ))}
-          <h2>Latest in {secondCategoryToList}</h2>
-          {posttolist2.map(post => (
-            <ListCard
-              key={post.node.slug}
-              slug={post.node.slug}
-              title={post.node.title}
-              image={(post.node.featured_media) === null ? this.props.data.site.siteMetadata.placeholderImage : post.node.featured_media.source_url}
-              date={post.node.date}
-            />
+            ))}
+            </Styledcatblock>
           ))}
         </Center>
         <Right>Latest From The Web</Right>
@@ -111,20 +119,16 @@ export default IndexPage
 export const indexquery = graphql`
     query indexquery {
       allWordpressPost (limit:20) {
-        totalCount
         edges	{
           node  {
             acf {
               show_featured
             }
-            id
             slug
             title
             date(formatString: "MMMM Do, YYYY")
             featured_media {
               source_url
-              slug
-              alt_text
             }
             categories {
               slug
@@ -141,6 +145,17 @@ export const indexquery = graphql`
           placeholderImage
         }
       }
+      allWordpressCategory (
+      filter: {slug: {ne: "uncategorized"}}
+    )  {
+      edges {
+        node {
+          slug
+          name
+          count
+        }
+      }
+    }
     }
 
 

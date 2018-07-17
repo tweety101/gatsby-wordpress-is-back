@@ -45,7 +45,7 @@ const ListCard = props => {
                     >
                         <Transformation
                             width="auto"
-                            height="100"
+                            height="80"
                             dpr="auto"
                             crop="fill"
                             gravity="face:center"
