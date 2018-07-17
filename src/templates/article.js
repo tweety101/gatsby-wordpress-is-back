@@ -45,9 +45,9 @@ class ArticleTemplate extends React.Component {
     const siteinfo = this.props.data.site.siteMetadata;
     const disqusShortname = "hindumediabureau";
     const disqusConfig = {
-      url: this.props.location,
-      identifier: "",
-      title: thisarticle.title,
+      url: "",
+      identifier: this.props.location.pathname,
+      title: "",
   };
     const absUrl = siteinfo.domainurl + this.props.location.pathname;
     const sharedImage = (thisarticle.featured_media) === null ? 
