@@ -7,7 +7,7 @@ import Disqus from 'disqus-react';
 import LazyLoad from 'react-lazy-load';
 import Helmet from 'react-helmet';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-
+import Sharebuttons from '../components/sharebuttons/sharebuttons';
 
 const Article = styled.article`
    max-width: 1000px;
@@ -79,6 +79,9 @@ class ArticleTemplate extends React.Component {
           responsive
           secure />
         <Body>
+          <Sharebuttons
+            posturl = {absUrl}
+            />
           <h1>{thisarticle.title}</h1>
           <div>{ ReactHtmlParser(thisarticle.content) }</div>
         <LazyLoad height={300} offsetVertical={200}>
