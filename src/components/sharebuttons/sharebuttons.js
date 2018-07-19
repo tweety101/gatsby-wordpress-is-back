@@ -8,22 +8,25 @@ import TwitterIcon from './twittericon';
 
 
 const Sharebuttons = styled.div`
-    width: 300px;
-    height: 100%;
+    width: 100%;
+    height: 100px;
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
-    align-content: center;
+    align-items: center;
     font-size: 1.5rem;
     background-color: #f5f5f5;
+    margin: 3rem 0 1rem 0;
   
+`
+const Sharetext = styled.p`
+    justify-self: start;
 `
 
 
 const sharebuttons = (props) => {
     return (
         <Sharebuttons>
-        <p>Share:</p>
+        <Sharetext>Easy sharing:</Sharetext>
             <a
                 href={"https://www.facebook.com/sharer.php?u="+ props.posturl}
                 target="_blank">

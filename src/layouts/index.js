@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Link from 'gatsby-link';
 import { Image } from 'cloudinary-react';
 import { Transformation } from 'cloudinary-react';
+import BottomBar from '../components/bottombar';
 
 
 const Container = styled.div`
@@ -85,7 +86,7 @@ const Layout = ({ children, data }) => (
     </Mynav>
   </Myheader>
       {children()}
-    <Copyright>Copyright @ Hindu Media Bureau</Copyright>
+    <BottomBar/>
     </Container>
   </div>
 )

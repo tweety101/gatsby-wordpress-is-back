@@ -36,7 +36,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
                   }
                 }
               }
-        }
+            allWordpressPage {
+              edges {
+                node {
+                   slug
+                }
+              }
+            }
+          }
     `).then(result => {
             // Create pages for each article.
             result.data.allWordpressPost.edges.forEach(({ node }) => {
@@ -52,6 +59,15 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
                 createPage({
                     path: `/${node.slug}`,
                     component: path.resolve(`src/templates/category.js`),
+                    context: {
+                        slug: node.slug,
+                    }
+                })
+            })
+            result.data.allWordpressPage.edges.forEach(({ node }) => {
+                createPage({
+                    path: `/${node.slug}`,
+                    component: path.resolve(`src/templates/page.js`),
                     context: {
                         slug: node.slug,
                     }

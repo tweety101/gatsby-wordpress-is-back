@@ -7,9 +7,9 @@
     "babel-plugin-styled-components": "^1.5.1",
     "cloudinary-react": "^1.0.6",
     "disqus-react": "^1.0.5",
-    "gatsby": "^1.9.247",
-    "gatsby-link": "^1.6.40",
-    "gatsby-plugin-react-helmet": "^2.0.10",
+    "gatsby": "^1.9.274",
+    "gatsby-link": "^1.6.46",
+    "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-plugin-typography": "^1.7.19",
     "gatsby-source-wordpress": "^2.0.93",
@@ -17,7 +17,9 @@
     "react-html-parser": "^2.0.2",
     "react-lazy-load": "^3.0.13",
     "styled-components": "^3.3.3",
-    "typography-theme-funston": "^0.15.10"
+    "typography": "^0.16.17",
+    "typography-theme-funston": "^0.15.10",
+    "typography-theme-irving": "^0.15.10"
   },
   "keywords": [
     "gatsby"
@@ -30,7 +32,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "prettier": "^1.12.0"
+    "prettier": "^1.13.7"
   },
   "repository": {
     "type": "git",
