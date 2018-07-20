@@ -8,6 +8,8 @@ import LazyLoad from 'react-lazy-load';
 import Helmet from 'react-helmet';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import Sharebuttons from '../components/sharebuttons/sharebuttons';
+import PreviousIcon from '../components/previousicon';
+import NextIcon from '../components/nexticon';
 
 const Article = styled.article`
    max-width: 1000px;
@@ -36,6 +38,24 @@ const Body = styled.div`
 `
 const Comments = styled.div`
 
+`
+const ArticleFooter = styled.div`
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px 10px 20px;
+      background-color: white;
+      @media (min-width: 500px){
+        position: relative;
+      }
+
+`
+const PrevNextLink = styled(Link)`
+      text-shadow: none;
+        background-image: none;
 `
 
 
@@ -88,6 +108,10 @@ class ArticleTemplate extends React.Component {
         <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
         </LazyLoad>
         </Body>
+        <ArticleFooter>
+          <PrevNextLink to={this.props.pathContext.prev.slug}><PreviousIcon/></PrevNextLink>
+          <PrevNextLink to={this.props.pathContext.next.slug}><NextIcon/></PrevNextLink>
+        </ArticleFooter>
       </Article>
     )
   }

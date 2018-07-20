@@ -23,8 +23,16 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             allWordpressPost {
             edges {
                 node {
-                slug
+                    slug
                 }
+                next {
+                    slug
+                    title
+                  }
+                  previous {
+                    slug
+                    title
+                  }
             }
             }
             allWordpressCategory (
@@ -46,12 +54,17 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
     `).then(result => {
             // Create pages for each article.
-            result.data.allWordpressPost.edges.forEach(({ node }) => {
+            
+            result.data.allWordpressPost.edges.forEach(({ node, previous, next }) => {
+                const nextPost = next === null ? {slug: "", title: "No more posts"} : {slug: "../" + next.slug, title: next.title};
+                const prevPost = previous === null ? {slug: "", title: "No more posts"} : {slug: "../" + previous.slug, title: previous.title};
                 createPage({
                     path: `/${node.slug}`,
                     component: path.resolve(`src/templates/article.js`),
                     context: {
                         slug: node.slug,
+                        prev: prevPost,
+                        next: nextPost
                     },
                 })
             })
