@@ -48,7 +48,8 @@ const Styledfooter = styled.footer`
 const CategoryLink = styled(Link)`
         color: red;
         display: flex;
-        text-decoration: none;
+        text-shadow: none;
+        background-image: none;
 
 `
 
@@ -106,7 +107,7 @@ class IndexPage extends React.Component {
           ))}
         </Center>
         <Right>Latest From The Web</Right>
-        <Styledfooter>Not sure what to put here</Styledfooter>
+        
       </Styledmain>
 
     );

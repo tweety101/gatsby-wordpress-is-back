@@ -7,9 +7,10 @@ import { Transformation } from 'cloudinary-react';
 const Post = styled.li`
   padding: 10px;
   margin-bottom: 5rem;
-  a{
-    text-decoration: none;
-  }
+  a {
+        text-shadow: none;
+        background-image: none;
+      }
 `
 
 const Title = styled.h2`

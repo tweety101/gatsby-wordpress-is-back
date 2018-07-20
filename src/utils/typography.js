@@ -1,9 +1,7 @@
 import Typography from "typography";
-import funstonTheme from 'typography-theme-funston'
-import irvingTheme from 'typography-theme-irving'
+import oceanBeachTheme from 'typography-theme-ocean-beach'
 
-
-const typography = new Typography(irvingTheme);
+const typography = new Typography(oceanBeachTheme)
 
 export default typography;
 

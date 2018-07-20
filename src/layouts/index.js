@@ -6,14 +6,20 @@ import Link from 'gatsby-link';
 import { Image } from 'cloudinary-react';
 import { Transformation } from 'cloudinary-react';
 import BottomBar from '../components/bottombar';
-
+import LogoSvg from '../components/logo';
 
 const Container = styled.div`
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      max-width: 100%;
 `
 const Logo = styled.div`
+      margin: 10px 0 10px 0;
+      a {
+        text-shadow: none;
+        background-image: none;
+      }
 `
 const Myheader = styled.header`
     grid-column: span 3;
@@ -32,18 +38,13 @@ const Mynav = styled.nav`
       overflow: scroll;
       a {
         width: 100%;
-        text-decoration: none;
+        text-shadow: none;
+        background-image: none;
         padding: 0px 5px 0px 5px;
+        font-size: 1.2em;
+        color: black;
       }
 `
-const Copyright = styled.div`
-      width: 100%;
-      text-align: center;
-      background-color: grey;
-      color: white;
-      font-size: 0.8rem;
-      padding: 10px;
-    `
       
 
 
@@ -65,23 +66,21 @@ const Layout = ({ children, data }) => (
     <Myheader>
     <Logo><Link
       to="/">
-          <Image cloudName="dkeudosjel"
-              publicId="Hindu_Media_Bureau_logo_2.jpg"
-              secure
-            >
-            <Transformation
-                width="200"
-                dpr="auto"
-                crop="scale"
-              />
-            </Image>
+        <LogoSvg/>
         </Link>
         </Logo>
+        
     <Mynav>
       {data.allWordpressCategory.edges.map(cat =>(
         <Link 
         key={cat.node.slug}
-        to={`/${cat.node.slug}/`}>{cat.node.name}</Link>
+        to={`/${cat.node.slug}/`}
+        activeStyle={{
+          fontWeight: 'bold',
+          backgroundColor: '#BE3431',
+          color: 'white'
+        }}>
+        <p>{cat.node.name}</p></Link>
       ))}
     </Mynav>
   </Myheader>

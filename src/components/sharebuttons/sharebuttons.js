@@ -16,6 +16,10 @@ const Sharebuttons = styled.div`
     font-size: 1.5rem;
     background-color: #f5f5f5;
     margin: 3rem 0 1rem 0;
+    a {
+        text-shadow: none;
+        background-image: none;
+    }
   
 `
 const Sharetext = styled.p`

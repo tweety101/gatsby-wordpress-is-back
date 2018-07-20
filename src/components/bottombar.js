@@ -7,18 +7,18 @@ const BottomBarContainer = styled.div`
     width: 100%;
     background-color: grey;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    
+    padding: 10px 10px 10px 10px; 
     a {
         color: white;
-        text-decoration: none;
+        text-shadow: none;
+        background-image: none;
+    
     }
-
 `
 
 const StyledLink = styled(Link)`
-    padding: 0 3em;
+    padding: 10px;
 `
 
 const BottomBar = () => {
